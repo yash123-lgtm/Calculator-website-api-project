@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #6dd5fa, #2980b9);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;  
+      width: 320px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .display {
+      background: #fff;
+      color: #333;
+      border-radius: 8px;
+      padding: 15px;
+      font-size: 28px;
+      margin-bottom: 15px;
+      text-align: right;
+      min-height: 40px;
+      box-sizing: border-box;
+      word-break: break-all;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    button {
+      padding: 18px 0;
+      border: none;
+      border-radius: 8px;
+      background: #ff9800;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #e68900;
+    }
+    .operator {
+      background: #2980b9;
+    }
+    .operator:hover {
+      background: #1c5a85;
+    }
+    .equals {
+      background: #43e97b;
+      color: #333;
+    }
+    .equals:hover {
+      background: #38c76b;
+    }
+    .clear {
+      background: #e74c3c;
+    }
+    .clear:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧮 Calculator</h1>
+    <div class="display" id="display"></div>
+    <div class="buttons">
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button class="operator" onclick="append('/')">÷</button>
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button class="operator" onclick="append('*')">×</button>
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button class="operator" onclick="append('-')">−</button>
+      <button onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button class="operator" onclick="append('+')">+</button>
+      <button class="equals" style="grid-column: span 4;" onclick="calculate()">=</button>
+    </div>
+  </div>
+  <script>
+    let currentInput = '';
+
+    function append(value) {
+      currentInput += value;
+      document.getElementById('display').textContent = currentInput;
+    }
+
+    function clearDisplay() {
+      currentInput = '';
+      document.getElementById('display').textContent = '';
+    }
+
+    function calculate() {
+      try {
+        // Replace division and multiplication symbols for eval
+        const sanitizedInput = currentInput.replace(/÷/g, '/').replace(/×/g, '*');
+        const result = eval(sanitizedInput);
+        document.getElementById('display').textContent = result;
+        currentInput = result.toString();
+      } catch {
+        document.getElementById('display').textContent = 'Error';
+        currentInput = '';
+      }
+    }
+  </script>
+</body>
+</html>
+	}
+	// ]]>
+</script>
+</body>
+</html>
